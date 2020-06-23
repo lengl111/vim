@@ -12,12 +12,19 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh'  }
 "Plug 'mhinz/vim-signify'   "修改比较
 Plug 'tomasr/molokai' "颜色
 Plug 'fholgado/minibufexpl.vim' "打开的多文件浏览
+"Plug 'derekwyatt/vim-fswitch' "多文件切换
+Plug 'yegappan/grep' "多文件切换
+Plug 'skywind3000/asyncrun.vim' "运行
+
+"Plug 'easymotion/vim-easymotion'
 call plug#end()  "结束
 
 
 
 let mapleader=','
 set fileencodings=utf-8,gb2312,gbk,big5,gb18030,latin1
+set encoding=utf-8
+set termencoding=utf-8
 
 set t_Co=256
 colorscheme molokai
@@ -238,3 +245,24 @@ map <Leader>bl :MBEToggle<cr>
 map <C-h> :MBEbn<cr>
 map <C-l> :MBEbp<cr>"
 endif
+
+"文件切换
+"let g:ctrlsf_ackprg = 'ack' 
+"zypper --no-refresh in ack
+
+nnoremap <silent> <Leader>rf :Rgrep -w <cword><CR><CR><CR>
+"nnoremap <silent> <Leader>sf :Rgrep  <cword><CR><CR><CR>
+
+"Rgrep quickfix prev,next,close 
+nnoremap <Leader>cp :cp<CR>
+nnoremap <Leader>cn :cn<CR>
+nnoremap <Leader>cl :ccl<CR>
+noremap <Leader>nl :noh<CR>
+"grep.vim config
+let Grep_Default_Filelist = '*.c *.cpp *.h *.sh *.py'
+let Grep_Skip_Dirs = '.svn obj CVS'
+let Grep_Skip_Files = 'tags *~ cscope.* *.a *.o *.bak'
+"AsyncRun config
+let g:asyncrun_open = 8
+nnoremap <Leader>cr :AsyncRun 
+
